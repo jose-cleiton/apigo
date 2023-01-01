@@ -1,35 +1,27 @@
 package db
 
 import (
-	"Api/configs"
 	"database/sql"
 	"fmt"
+	"Api/configs"
 
 	_ "github.com/lib/pq"
 )
 
-func OpenConnection(*sql.DB, error){
+func OpenConnection()(*sql.DB, error){
 	conf:= configs.GetDB()
 
 
 	sc:= fmt.Sprint(
-		"host=%s",
-		" port=%s",
-		" user=%s",
-		" password=%s",
-		" dbname=%s",
+		"host=", conf.Host,
+		" port=", conf.Port,
+		" user=", conf.User,
+		" password", conf.Password,
+		" dbname=", conf.Database,
 		" sslmode=disable",
-
-		conf.Host,
-		conf.Port,
-		conf.User,
-		conf.Password,
-		conf.Database,
-
-		
 	)
 
-	conn, err:= sql.Open("postgre", sc)
+	conn, err:= sql.Open("postgres", sc)
 
 	if err!= nil {
 		panic(err)

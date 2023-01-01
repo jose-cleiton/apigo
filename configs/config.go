@@ -2,6 +2,8 @@ package configs
 
 import "github.com/spf13/viper"
 
+
+
 var cfg *config
 
 
@@ -56,7 +58,7 @@ func Load() error {
 			Port: viper.GetString("database.port"),
 			User: viper.GetString("database.user"),
 			Password: viper.GetString("database.password"),
-			Database: viper.GetString("database.database"),
+			Database: viper.GetString("database.name"),
 		}
 
 		return nil
